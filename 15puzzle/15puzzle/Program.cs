@@ -31,10 +31,10 @@ namespace _15puzzle
 
             Game3 game = new Game3(1, 2, 3, 4, 0, 6, 7, 8 , 5);
             DisplayCurrentState(game.Field);
-            game.Shift(4);
+           // game.Shift(4);
             DisplayCurrentState(game.Field);
-            Console.WriteLine(game.TurnsHistory[0]);
-            
+           // Console.WriteLine(game.TurnsHistory[0]);
+            game.Rollback(1);
         }
     }
 }

@@ -25,12 +25,16 @@ namespace _15puzzle
 
         public void Rollback(int value)
         {
-            for (int i = 0; i < value; i++)
+            if (TurnsHistory.Count >= value)
             {
-                int a = TurnsHistory[TurnsHistory.Count - 1];
-                TurnsHistory.RemoveAt(TurnsHistory.Count - 1);
-                base.Shift(a);
+                for (int i = 0; i < value; i++)
+                {
+                    int a = TurnsHistory[TurnsHistory.Count - 1];
+                    TurnsHistory.RemoveAt(TurnsHistory.Count - 1);
+                    base.Shift(a);
+                }
             }
+            else throw new ArgumentException("История ходов пуста");
 
         }
     }
