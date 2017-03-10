@@ -48,5 +48,11 @@ namespace _15puzzle
             }
             return true;
         }
+
+        public override void Shift(int value)
+        {
+            base.Shift(value);
+            if (Solved()) throw new ArgumentException("Конец игры");
+        }
     }
 }
