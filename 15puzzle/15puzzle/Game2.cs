@@ -12,11 +12,22 @@ namespace _15puzzle
         {
         }
 
+        public static bool IsSolvablePuzzle(int[] array)
+        {
+            int count = 0;
+            for (int i = 0; i < array.Length - 1; i++)
+                if (array[i] > array[i + 1]) count++;
+            return (count % 2 == 0);
+        }
+
         public static Game2 Randomizer(Game SomeArray)
         {
             Random random = new Random();
             int[] matrix = new int[SomeArray.dimensions * SomeArray.dimensions];
-            matrix = Enumerable.Range(0, matrix.Length).OrderBy(_ => random.Next()).ToArray();
+            do
+            {
+                matrix = Enumerable.Range(0, matrix.Length).OrderBy(_ => random.Next()).ToArray();
+            } while (IsSolvablePuzzle(matrix));
             return new Game2(matrix);
         }
 
@@ -28,18 +39,11 @@ namespace _15puzzle
             {
                 for (int j = 0; j < dimensions; j++)
                 {
-                    if ((i != dimensions - 1) || (j != dimensions - 1))
-                    {
-                        if (Field[i, j] != orderValue)
-                        {
-                            return false;
-                        }
-                        orderValue++;
-                    }
-                    else if (Field[dimensions - 1, dimensions - 1] != 0)
+                    if ((((i != dimensions - 1) || (j != dimensions - 1)) && (Field[i, j] != orderValue)) || (Field[dimensions - 1, dimensions - 1] != 0))
                     {
                         return false;
                     }
+                    orderValue++;
                 }
             }
             return true;

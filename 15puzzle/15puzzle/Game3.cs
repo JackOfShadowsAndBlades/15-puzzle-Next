@@ -10,17 +10,28 @@ namespace _15puzzle
 
     class Game3 : Game2
     {
-        public readonly List<KeyValuePair<int, Tuple<int,int>>> TurnsHistory = new List<KeyValuePair<int, Tuple<int, int>>>();
+        public readonly List<int> TurnsHistory = new List<int>();
 
         public Game3(params int[] historyList) : base(historyList)
         {
-            TurnsHistory = new List<KeyValuePair<int, Tuple<int, int>>>();
+            TurnsHistory = new List<int>();
         }
 
         public override void Shift(int value)
         {
             base.Shift(value);
-            TurnsHistory.Add(new KeyValuePair<int, Tuple<int, int>>(value,GetLocation(value)));
+            TurnsHistory.Add(value);
+        }
+
+        public void Rollback(int value)
+        {
+            for (int i = 0; i < value; i++)
+            {
+                int a = TurnsHistory[TurnsHistory.Count - 1];
+                TurnsHistory.RemoveAt(TurnsHistory.Count - 1);
+                base.Shift(a);
+            }
+
         }
     }
 }

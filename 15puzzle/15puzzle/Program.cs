@@ -33,8 +33,8 @@ namespace _15puzzle
             DisplayCurrentState(game.Field);
             game.Shift(4);
             DisplayCurrentState(game.Field);
-
             Console.WriteLine(game.TurnsHistory[0]);
+            
         }
     }
 }
