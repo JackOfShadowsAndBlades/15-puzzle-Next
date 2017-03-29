@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace _15puzzle
 {
-    class Game2 : Game
+    class Game2 : Game, IPlayable
     {
         public Game2(params int[] SomeArray) : base(SomeArray)
         {
@@ -20,26 +20,25 @@ namespace _15puzzle
             return (count % 2 == 0);
         }
 
-        public static Game2 Randomizer(Game SomeArray)
+        public void Randomizer(int[] SomeArray)
         {
             Random random = new Random();
-            int[] matrix = new int[SomeArray.dimensions * SomeArray.dimensions];
+            int[] matrix = new int[Dimensions * Dimensions];
             do
             {
                 matrix = Enumerable.Range(0, matrix.Length).OrderBy(_ => random.Next()).ToArray();
             } while (IsSolvablePuzzle(matrix));
-            return new Game2(matrix);
         }
 
         public bool Solved()
         {
             int orderValue = 1;
 
-            for (int i = 0; i < dimensions; i++)
+            for (int i = 0; i < Dimensions; i++)
             {
-                for (int j = 0; j < dimensions; j++)
+                for (int j = 0; j < Dimensions; j++)
                 {
-                    if ((((i != dimensions - 1) || (j != dimensions - 1)) && (Field[i, j] != orderValue)) || (Field[dimensions - 1, dimensions - 1] != 0))
+                    if ((((i != Dimensions - 1) || (j != Dimensions - 1)) && (Field[i, j] != orderValue)) || (Field[Dimensions - 1, Dimensions - 1] != 0))
                     {
                         return false;
                     }

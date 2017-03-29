@@ -10,7 +10,7 @@ namespace _15puzzle
     class Game
     {
         public int[,] Field;
-        public readonly int dimensions;
+        public int Dimensions { get; set; }
         private int tmpI = 0, tmpJ = 0, _tmpI = 0, _tmpJ = 0;
         private Dictionary<int, Tuple<int, int>> dictionary = new Dictionary<int, Tuple<int, int>>();
 
@@ -23,12 +23,12 @@ namespace _15puzzle
                 throw new ArgumentException("Значения введенных данных некорректны");
             }
 
-            dimensions = (int)Math.Sqrt(SomeArray.Length);
-            Field = new int[dimensions, dimensions];
+            Dimensions = (int)Math.Sqrt(SomeArray.Length);
+            Field = new int[Dimensions, Dimensions];
 
-            for (int i = 0; i < dimensions; i++)
+            for (int i = 0; i < Dimensions; i++)
             {
-                for (int j = 0; j < dimensions; j++)
+                for (int j = 0; j < Dimensions; j++)
                 {
                     if (SomeArray[count] == 0)
                     {
@@ -65,7 +65,7 @@ namespace _15puzzle
 
         public Tuple<int, int> GetLocation(int value)
         {
-            if (value >= 0 && value < Math.Pow(dimensions, 2))  
+            if (value >= 0 && value < Math.Pow(Dimensions, 2))  
             {
                 var coord = Tuple.Create(dictionary[value].Item1, dictionary[value].Item2);
                 return coord;
