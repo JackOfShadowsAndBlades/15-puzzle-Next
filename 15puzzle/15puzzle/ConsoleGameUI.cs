@@ -17,7 +17,7 @@ namespace _15puzzle
 
         public void ReadValue()
         {
-            DiplayField();
+            DisplayField();
             while (!objIPlayable.Solved())
             {
                 int number;
@@ -26,7 +26,7 @@ namespace _15puzzle
                     if (number >= 0)
                     {
                         objIPlayable.Shift(number);
-                        DiplayField();
+                        DisplayField();
                     }
                     else
                     {
@@ -41,7 +41,7 @@ namespace _15puzzle
             throw new ArgumentException("Игра закончена");
         }
 
-        public void DiplayField()
+        public void DisplayField()
         {
             for (int i = 0; i < objIPlayable.Dimensions; i++)
             {
