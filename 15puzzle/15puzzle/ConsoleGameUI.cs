@@ -10,14 +10,13 @@ namespace _15puzzle
     {
         IPlayable objIPlayable;
 
-        public ConsoleGameUI(IPlayable game)
+        public ConsoleGameUI(IPlayable gameUI)
         {
-            objIPlayable = game;
+            objIPlayable = gameUI;
         }
 
         public void ReadValue()
         {
-            DisplayField();
             while (!objIPlayable.Solved())
             {
                 int number;
@@ -26,7 +25,6 @@ namespace _15puzzle
                     if (number >= 0)
                     {
                         objIPlayable.Shift(number);
-                        DisplayField();
                     }
                     else
                     {
